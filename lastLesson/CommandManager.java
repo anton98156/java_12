@@ -14,17 +14,17 @@ public class CommandManager {
     }
 
     public void handleCommand(String command) {
-        String[] split = command.split(" "); // [command-name, arg]
+        String[] split = command.split(" ");
         String commandName = split[0];
         String[] arguments = Arrays.copyOfRange(split, 1, split.length);
 
         for (CommandHandler handler : handlers) {
             if (commandName.equals(handler.commandName())) {
                 handler.handleCommand(map, arguments);
-                return;
+                return;}
+            else {
+                throw new UnsupportedOperationException("Команда не найдена. Попробуйте сначала");
             }
         }
-        System.out.println("Команда не найдена. Попробуйте еще раз");
     }
-
 }
